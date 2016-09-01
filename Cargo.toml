@@ -1,0 +1,15 @@
+[package]
+name = "qwk"
+version = "0.1.0"
+authors = ["Mark Sta Ana <booyaabooyaabooyaa@gmail.com>"]
+description = "Duck Duck Go client"
+repository = "https://github.com/booyaa/qwk"
+readme = "README.md"
+keywords = ["duckduckgo","cli"]
+license = "Apache-2.0"
+
+[dependencies]
+quackngo = { path = "/Users/booyaa/Dev/rust/foundry/quackngo" }
+log = "0.3"
+env_logger = "0.3"
+clap = "2.9"
