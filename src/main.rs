@@ -51,24 +51,28 @@ fn main() {
                       .get_matches();
 
     let query = matches.value_of("query").unwrap();
-    println!("query: {}", query);
+    info!("query: {}", query);
 
-    let results = Quack::new("!imdb rushmore");
+    let results = Quack::new(&query);
+    debug!("{:#?}", results);
     if results.response_type == "E" {
         println!("{}", results.redirect);
-    } else {
+    } else if !results.abstract_text.is_empty() {
+
         println!("{}", results.abstract_text);
+    } else {
+        println!("Nothing found :(");
     }
 
     if matches.is_present("count") {
         let count = matches.value_of("count").unwrap();
-        println!("count: {}", count);
+        info!("count: {}", count);
 
     }
 
     if matches.is_present("type") {
         let answer_type = matches.value_of("type").unwrap();
-        println!("type: {}", answer_type);
+        info!("type: {}", answer_type);
     }
 
 
