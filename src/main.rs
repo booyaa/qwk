@@ -53,9 +53,17 @@ fn main() {
     let query = matches.value_of("query").unwrap();
     println!("query: {}", query);
 
+    let results = Quack::new("!imdb rushmore");
+    if results.response_type == "E" {
+        println!("{}", results.redirect);
+    } else {
+        println!("{}", results.abstract_text);
+    }
+
     if matches.is_present("count") {
         let count = matches.value_of("count").unwrap();
         println!("count: {}", count);
+
     }
 
     if matches.is_present("type") {
@@ -64,6 +72,5 @@ fn main() {
     }
 
 
-    // let foo = Quack::new("!imdb rushmore");
     // println!("{:#?}", foo);
 }

@@ -16,6 +16,8 @@ Binaries to follow.
 
 Searches for 'foo' on Duck Duck Go and returns the Abstract Text or if `!bang` command the redirected url.
 
+Options don't do anything yet.
+
 Copyright 2016 Mark Sta Ana.
 
 Licensed under the Apache License, Version 2.0 <LICENSE-APACHE or
