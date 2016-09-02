@@ -35,13 +35,6 @@ fn main() {
                                .help("Something to search")
                                .required(true)
                                .index(1))
-                      .arg(Arg::with_name("type")
-                               .help("Type of record to return, will error if no results")
-                               .short("t")
-                               .long("type")
-                               .value_name("A|C|N|E")
-                               .possible_values(&["A", "C", "N", "E"])
-                               .takes_value(true))
                       .arg(Arg::with_name("count")
                                .help("Number of records to return")
                                .short("c")
@@ -51,30 +44,40 @@ fn main() {
                       .get_matches();
 
     let query = matches.value_of("query").unwrap();
-    info!("query: {}", query);
+    debug!("query: {}", query);
 
     let results = Quack::new(&query);
     debug!("{:#?}", results);
+
     if results.response_type == "E" {
         println!("{}", results.redirect);
     } else if !results.abstract_text.is_empty() {
-
         println!("{}", results.abstract_text);
     } else {
         println!("Nothing found :(");
+        std::process::exit(1_i32);
     }
+
 
     if matches.is_present("count") {
-        let count = matches.value_of("count").unwrap();
-        info!("count: {}", count);
+        let count = matches.value_of("count").unwrap().parse::<usize>().unwrap();
+        let actual_count = results.related_topics.len();
+        if count > actual_count {
+            error!("There are only {} records", actual_count);
+            std::process::exit(1_i32);
+        }
+        for i in 1..count {
+            println!("{},{:#?}",
+                     i,
+                     results.related_topics
+                            .iter()
+                            .nth(i)
+                            .expect("failed to find RelatedTopic tag")
+                            .text);
+            info!("count: {}", count);
+        }
 
+
+        // println!("{:#?}", foo);
     }
-
-    if matches.is_present("type") {
-        let answer_type = matches.value_of("type").unwrap();
-        info!("type: {}", answer_type);
-    }
-
-
-    // println!("{:#?}", foo);
 }
