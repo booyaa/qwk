@@ -46,18 +46,23 @@ fn main() {
     let query = matches.value_of("query").unwrap();
     debug!("query: {}", query);
 
-    let results = Quack::new(&query);
+    let results = Quack::new(&query).expect("Nothing found :(");
     debug!("{:#?}", results);
 
     if results.response_type == "E" {
         println!("{}", results.redirect);
-    } else if !results.abstract_text.is_empty() {
+    } else if results.response_type == "C" {
+        println!("{}",
+                 results.related_topics
+                        .iter()
+                        .nth(0)
+                        .expect("failed to find RelatedTopic tag")
+                        .text);
+    } else if results.response_type == "A" {
         println!("{}", results.abstract_text);
     } else {
-        println!("Nothing found :(");
-        std::process::exit(1_i32);
+        println!("response_type: {}", results.response_type);
     }
-
 
     if matches.is_present("count") {
         let count = matches.value_of("count").unwrap().parse::<usize>().unwrap();
@@ -76,8 +81,5 @@ fn main() {
                             .text);
             info!("count: {}", count);
         }
-
-
-        // println!("{:#?}", foo);
     }
 }
