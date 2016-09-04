@@ -1,6 +1,9 @@
 # qwk
 
-travis-ci: [![Build Status](https://travis-ci.org/booyaa/qwk.svg?branch=master)](https://travis-ci.org/booyaa/qwk)
+| travis-ci | appveyor |
+|-----------|----------|
+| [![Build Status](https://travis-ci.org/booyaa/qwk.svg?branch=master)](https://travis-ci.org/booyaa/qwk) | [![Build Status](https://ci.appveyor.com/api/projects/status/github/booyaa/qwk)] |
+
 
 A [Duck Duck Go](https://duckduckgo.com) client.
 
@@ -8,7 +11,7 @@ A [Duck Duck Go](https://duckduckgo.com) client.
 
 `cargo install qwk`
 
-Binaries to follow.
+Binaries will be available in the [releases](https://github.com/booyaa/qwk/releases).
 
 # Usage
 
@@ -16,7 +19,25 @@ Binaries to follow.
 
 Searches for 'foo' on Duck Duck Go and returns the Abstract Text or if `!bang` command the redirected url.
 
-Options don't do anything yet.
+```
+qwk 0.1.2
+Mark Sta Ana <booyaabooyaabooyaa@gmail.com>
+Duck Duck Go client written in Rust
+
+USAGE:
+    qwk [OPTIONS] <query>
+
+FLAGS:
+    -h, --help       Prints help information
+    -V, --version    Prints version information
+
+OPTIONS:
+    -c, --count <RECORDS>    Number of records to return
+
+
+ARGS:
+    <query>    Something to search
+```
 
 Copyright 2016 Mark Sta Ana.
 
