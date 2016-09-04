@@ -1,6 +1,6 @@
 [package]
 name = "qwk"
-version = "0.1.2"
+version = "0.1.3"
 authors = ["Mark Sta Ana <booyaabooyaabooyaa@gmail.com>"]
 description = "Duck Duck Go client written in Rust"
 repository = "https://github.com/booyaa/qwk"

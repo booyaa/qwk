@@ -19,11 +19,9 @@ Binaries will be available in the [releases](https://github.com/booyaa/qwk/relea
 
 Searches for 'foo' on Duck Duck Go and returns the Abstract Text or if `!bang` command the redirected url.
 
-```
-qwk 0.1.2
-Mark Sta Ana <booyaabooyaabooyaa@gmail.com>
-Duck Duck Go client written in Rust
+## Flags and options
 
+```
 USAGE:
     qwk [OPTIONS] <query>
 
